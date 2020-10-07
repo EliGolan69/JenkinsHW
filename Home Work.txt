@@ -66,5 +66,48 @@ Finished: SUCCESS
 Would last have run at Wednesday, October 7, 2020 8:00:42 AM IDT; would next run at Thursday, October 8, 2020 8:00:42 AM IDT.
 --------------------
 
+=========================================================================
+5. Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
+=========================================================================
 
+Started by user eli golan
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] Start of Pipeline (hide)
+[Pipeline] node
+Running on Jenkins in C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Create file)
+[Pipeline] bat
 
+C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\main.py 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Read file)
+[Pipeline] bat
+
+C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\ReadFile.py 
+Eli Golan
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Disk space)
+[Pipeline] bat
+
+C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\DiskSize.py 
+=== Device: C:\ ===
+  Free space: 541.12GB
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Move File)
+[Pipeline] bat
+
+C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\MoveFile.py 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
