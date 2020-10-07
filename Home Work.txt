@@ -1,13 +1,60 @@
+1. Build Job that creates a text file containing your name on your desktop.
+=========================================================================
+
 Started by user eli golan
 Running as SYSTEM
 Building in workspace C:\Users\eligo\.jenkins\workspace\Create a text file
-[Create a text file] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins5271915485770515645.bat
+[Create a text file] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins3708289837453536478.bat
 
-C:\Users\eligo\.jenkins\workspace\Create a text file>cd\
+C:\Users\eligo\.jenkins\workspace\Create a text file>python c:\python\jenkins\class1\main.py 
 
-C:\>cd python\jenkins\class1 
-
-C:\Python\Jenkins\Class1>python main.py 
-
-C:\Python\Jenkins\Class1>exit 0 
+C:\Users\eligo\.jenkins\workspace\Create a text file>exit 0 
 Finished: SUCCESS
+
+=========================================================================
+2. Build job that will read your text file, and print its content.
+=========================================================================
+Started by user eli golan
+Running as SYSTEM
+Building in workspace C:\Users\eligo\.jenkins\workspace\Read file name
+[Read file name] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins1045331788380991324.bat
+
+C:\Users\eligo\.jenkins\workspace\Read file name>python c:\python\jenkins\class1\ReadFile.py 
+Eli Golan
+
+C:\Users\eligo\.jenkins\workspace\Read file name>exit 0 
+Finished: SUCCESS
+
+=========================================================================
+3. Build job that prints the free disk space.
+=========================================================================
+
+Started by user eli golan
+Running as SYSTEM
+Building in workspace C:\Users\eligo\.jenkins\workspace\print disk space
+[print disk space] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins5161325285771795029.bat
+
+C:\Users\eligo\.jenkins\workspace\print disk space>python c:\python\jenkins\class1\DiskSize.py 
+=== Device: C:\ ===
+  Free space: 541.14GB
+
+C:\Users\eligo\.jenkins\workspace\print disk space>exit 0 
+Finished: SUCCESS
+
+
+=========================================================================
+4. Build job that moves your text file into another directory.
+=========================================================================
+
+Started by user eli golan
+Running as SYSTEM
+Building in workspace C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory
+[Build job that moves your text file into another directory] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins4790563763843139721.bat
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>python c:\python\jenkins\class1\MoveFile.py 
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>exit 0 
+Finished: SUCCESS
+
+
+
