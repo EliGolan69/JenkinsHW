@@ -1,0 +1,13 @@
+Started by user eli golan
+Running as SYSTEM
+Building in workspace C:\Users\eligo\.jenkins\workspace\Create a text file
+[Create a text file] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins5271915485770515645.bat
+
+C:\Users\eligo\.jenkins\workspace\Create a text file>cd\
+
+C:\>cd python\jenkins\class1 
+
+C:\Python\Jenkins\Class1>python main.py 
+
+C:\Python\Jenkins\Class1>exit 0 
+Finished: SUCCESS
