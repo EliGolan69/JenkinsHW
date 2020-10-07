@@ -55,6 +55,12 @@ C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into anoth
 
 C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>exit 0 
 Finished: SUCCESS
+--------------------
+--> Build Triggers
+----> Build periodically
+0 8 * * *
+Would last have run at Wednesday, October 7, 2020 8:00:42 AM IDT; would next run at Thursday, October 8, 2020 8:00:42 AM IDT.
+--------------------
 
 
 
