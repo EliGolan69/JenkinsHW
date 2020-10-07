@@ -55,7 +55,11 @@ C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into anoth
 
 C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>exit 0 
 Finished: SUCCESS
---------------------
+
+=========================================================================
+4. Create a job that runs once a day at 8:00
+=========================================================================
+
 --> Build Triggers
 ----> Build periodically
 0 8 * * *
