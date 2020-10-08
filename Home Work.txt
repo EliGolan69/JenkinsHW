@@ -1,42 +1,96 @@
+
+=========================================================================
 1. Build Job that creates a text file containing your name on your desktop.
 =========================================================================
+SETLOCAL
+FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (
+  SET "DESKTOP_FOLDER=%%f"
+  )
+echo Eli Golan > %DESKTOP_FOLDER%\MyName.txt
+=========================================================================
+Console Output
 
 Started by user eli golan
 Running as SYSTEM
 Building in workspace C:\Users\eligo\.jenkins\workspace\Create a text file
-[Create a text file] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins3708289837453536478.bat
+[Create a text file] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins8227103195813562548.bat
 
-C:\Users\eligo\.jenkins\workspace\Create a text file>python c:\python\jenkins\class1\main.py 
+C:\Users\eligo\.jenkins\workspace\Create a text file>SETLOCAL
+
+C:\Users\eligo\.jenkins\workspace\Create a text file>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f" ) 
+
+C:\Users\eligo\.jenkins\workspace\Create a text file>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop" ) 
+
+C:\Users\eligo\.jenkins\workspace\Create a text file>echo Eli Golan  1>C:\Users\eligo\Desktop\MyName.txt 
 
 C:\Users\eligo\.jenkins\workspace\Create a text file>exit 0 
 Finished: SUCCESS
 
+
 =========================================================================
 2. Build job that will read your text file, and print its content.
 =========================================================================
+
+SetLocal EnableDelayedExpansion
+FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (
+  SET "DESKTOP_FOLDER=%%f"
+  )
+set content=for /F "delims=" %%i in ( %DESKTOP_FOLDER%\MyName.txt) do set content=!content!%%i
+echo %content%
+ENDLOCAL
+=========================================================================
+Console Output
+
 Started by user eli golan
 Running as SYSTEM
 Building in workspace C:\Users\eligo\.jenkins\workspace\Read file name
-[Read file name] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins1045331788380991324.bat
+[Read file name] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins4400803738599946164.bat
 
-C:\Users\eligo\.jenkins\workspace\Read file name>python c:\python\jenkins\class1\ReadFile.py 
-Eli Golan
+C:\Users\eligo\.jenkins\workspace\Read file name>SetLocal EnableDelayedExpansion 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f" ) 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop" ) 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>set content= 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>for /F "delims=" %i in (C:\Users\eligo\Desktop\MyName.txt) do set content=!content!%i 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>set content=!content!Eli Golan  
+
+C:\Users\eligo\.jenkins\workspace\Read file name>echo Eli Golan  
+Eli Golan 
+
+C:\Users\eligo\.jenkins\workspace\Read file name>ENDLOCAL  
 
 C:\Users\eligo\.jenkins\workspace\Read file name>exit 0 
 Finished: SUCCESS
+
+
 
 =========================================================================
 3. Build job that prints the free disk space.
 =========================================================================
 
+SETLOCAL
+
+FOR /F "usebackq tokens=1,2" %%f IN (`PowerShell -NoProfile -EncodedCommand "CgBnAHcAbQBpACAAVwBpAG4AMwAyAF8ATABvAGcAaQBjAGEAbABEAGkAcwBrACAALQBGAGkAbAB0AGUAcgAgACIAQwBhAHAAdABpAG8AbgA9ACcAQwA6ACcAIgB8ACUAewAkAGcAPQAxADAANwAzADcANAAxADgAMgA0ADsAWwBpAG4AdABdACQAZgA9ACgAJABfAC4ARgByAGUAZQBTAHAAYQBjAGUALwAkAGcAKQA7AFsAaQBuAHQAXQAkAHQAPQAoACQAXwAuAFMAaQB6AGUALwAkAGcAKQA7AFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAoACQAdAAtACQAZgApACwAJABmAH0ACgA="`) DO ((SET U=%%f)&(SET F=%%g))
+
+@ECHO Free: %F%
+==========================================================================
+Console Output
 Started by user eli golan
 Running as SYSTEM
 Building in workspace C:\Users\eligo\.jenkins\workspace\print disk space
-[print disk space] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins5161325285771795029.bat
+[print disk space] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins8052829821338936657.bat
 
-C:\Users\eligo\.jenkins\workspace\print disk space>python c:\python\jenkins\class1\DiskSize.py 
-=== Device: C:\ ===
-  Free space: 541.14GB
+C:\Users\eligo\.jenkins\workspace\print disk space>SETLOCAL
+
+C:\Users\eligo\.jenkins\workspace\print disk space>FOR /F "usebackq tokens=1,2" %f IN (`PowerShell -NoProfile -EncodedCommand "CgBnAHcAbQBpACAAVwBpAG4AMwAyAF8ATABvAGcAaQBjAGEAbABEAGkAcwBrACAALQBGAGkAbAB0AGUAcgAgACIAQwBhAHAAdABpAG8AbgA9ACcAQwA6ACcAIgB8ACUAewAkAGcAPQAxADAANwAzADcANAAxADgAMgA0ADsAWwBpAG4AdABdACQAZgA9ACgAJABfAC4ARgByAGUAZQBTAHAAYQBjAGUALwAkAGcAKQA7AFsAaQBuAHQAXQAkAHQAPQAoACQAXwAuAFMAaQB6AGUALwAkAGcAKQA7AFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAoACQAdAAtACQAZgApACwAJABmAH0ACgA="`) DO ((SET U=%f )  & (SET F=%g ) ) 
+#< CLIXML
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="information" RefId="2"><TN RefId="1"><T>System.Management.Automation.InformationRecord</T><T>System.Object</T></TN><ToString>394 541</ToString><Props><Obj N="MessageData" RefId="3"><TN RefId="2"><T>System.Management.Automation.HostInformationMessage</T><T>System.Object</T></TN><ToString>394 541</ToString><Props><S N="Message">394 541</S><B N="NoNewLine">false</B><S N="ForegroundColor">Gray</S><S N="BackgroundColor">Black</S></Props></Obj><S N="Source">Write-Host</S><DT N="TimeGenerated">2020-10-08T13:03:18.3305697+03:00</DT><Obj N="Tags" RefId="4"><TN RefId="3"><T>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</T><T>System.Object</T></TN><LST><S>PSHOST</S></LST></Obj><S N="User">LAPTOP_ASUS\eligo</S><S N="Computer">laptop_asus</S><U32 N="ProcessId">12152</U32><U32 N="NativeThreadId">17004</U32><U32 N="ManagedThreadId">15</U32></Props></Obj></Objs>
+C:\Users\eligo\.jenkins\workspace\print disk space>((SET U=394 )  & (SET F=541 ) ) 
+Free: 541
 
 C:\Users\eligo\.jenkins\workspace\print disk space>exit 0 
 Finished: SUCCESS
@@ -45,13 +99,31 @@ Finished: SUCCESS
 =========================================================================
 4. Build job that moves your text file into another directory.
 =========================================================================
+SETLOCAL
+FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (
+  SET "DESKTOP_FOLDER=%%f"
+  )
+if exist %DESKTOP_FOLDER%\MyName.txt move %DESKTOP_FOLDER%\MyName.txt %DESKTOP_FOLDER%\1\MyName.txt 
+ENDLOCAL 
 
+=======================================================================================================================
+
+Console Output
 Started by user eli golan
 Running as SYSTEM
 Building in workspace C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory
-[Build job that moves your text file into another directory] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins4790563763843139721.bat
+[Build job that moves your text file into another directory] $ cmd /c call C:\Users\eligo\AppData\Local\Temp\jenkins7607674301823000946.bat
 
-C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>python c:\python\jenkins\class1\MoveFile.py 
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>SETLOCAL
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f" ) 
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop" ) 
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>if exist C:\Users\eligo\Desktop\MyName.txt move C:\Users\eligo\Desktop\MyName.txt C:\Users\eligo\Desktop\1\MyName.txt  
+        1 file(s) moved.
+
+C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>ENDLOCAL  
 
 C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into another directory>exit 0 
 Finished: SUCCESS
@@ -70,41 +142,123 @@ Would last have run at Wednesday, October 7, 2020 8:00:42 AM IDT; would next run
 5. Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
 =========================================================================
 
+
+pipeline {
+    agent any
+    stages {
+        stage('Create File') {
+            steps {
+                bat '''FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath(\'Desktop\'))"`) DO (SET "DESKTOP_FOLDER=%%f" )
+                        echo Eli Golan > %DESKTOP_FOLDER%\\MyName.txt'''
+            }
+        }      
+        
+        
+        stage('Read and Print') {
+            steps {
+                   bat '''SetLocal EnableDelayedExpansion
+
+                    FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath(\'Desktop\'))"`) DO (
+                      SET "DESKTOP_FOLDER=%%f"
+                          )
+                    set content=
+                    for /F "delims=" %%i in ( %DESKTOP_FOLDER%\\MyName.txt) do set content=!content!%%i
+                    echo %content%
+                    ENDLOCAL '''
+                }
+        }
+      
+      
+        stage('Disk Space') {
+            steps {
+                    bat '''SETLOCAL
+                    FOR /F "usebackq tokens=1,2" %%f IN (`PowerShell -NoProfile -EncodedCommand "CgBnAHcAbQBpACAAVwBpAG4AMwAyAF8ATABvAGcAaQBjAGEAbABEAGkAcwBrACAALQBGAGkAbAB0AGUAcgAgACIAQwBhAHAAdABpAG8AbgA9ACcAQwA6ACcAIgB8ACUAewAkAGcAPQAxADAANwAzADcANAAxADgAMgA0ADsAWwBpAG4AdABdACQAZgA9ACgAJABfAC4ARgByAGUAZQBTAHAAYQBjAGUALwAkAGcAKQA7AFsAaQBuAHQAXQAkAHQAPQAoACQAXwAuAFMAaQB6AGUALwAkAGcAKQA7AFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAoACQAdAAtACQAZgApACwAJABmAH0ACgA="`) DO ((SET U=%%f)&(SET F=%%g))
+                    @ECHO Free: %F%'''
+                }
+        }
+        
+        stage('Move File') {
+            steps {
+                    bat '''SETLOCAL
+                    FOR /F "usebackq" %%f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath(\'Desktop\'))"`) DO (
+                     SET "DESKTOP_FOLDER=%%f")
+                    if exist %DESKTOP_FOLDER%\\MyName.txt move %DESKTOP_FOLDER%\\MyName.txt %DESKTOP_FOLDER%\\1\\MyName.txt 
+                    ENDLOCAL '''
+                }
+        }        
+        
+    }
+}
+
+==================================================================================================================================================================
+
+Console Output
 Started by user eli golan
 Running in Durability level: MAX_SURVIVABILITY
-[Pipeline] Start of Pipeline (hide)
+[Pipeline] Start of Pipeline
 [Pipeline] node
-Running on Jenkins in C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
+Running on Jenkins in C:\Users\eligo\.jenkins\workspace\Run 1-4
 [Pipeline] {
 [Pipeline] stage
-[Pipeline] { (Create file)
+[Pipeline] { (Create File)
 [Pipeline] bat
 
-C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\main.py 
+C:\Users\eligo\.jenkins\workspace\Run 1-4>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f"  ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop"  ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>echo Eli Golan  1>C:\Users\eligo\Desktop\MyName.txt 
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
-[Pipeline] { (Read file)
+[Pipeline] { (Read and Print)
 [Pipeline] bat
 
-C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\ReadFile.py 
-Eli Golan
+C:\Users\eligo\.jenkins\workspace\Run 1-4>SetLocal EnableDelayedExpansion 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f" ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop" ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>set content= 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>for /F "delims=" %i in (C:\Users\eligo\Desktop\MyName.txt) do set content=!content!%i 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>set content=!content!Eli Golan  
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>echo Eli Golan  
+Eli Golan 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>ENDLOCAL  
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
-[Pipeline] { (Disk space)
+[Pipeline] { (Disk Space)
 [Pipeline] bat
 
-C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\DiskSize.py 
-=== Device: C:\ ===
-  Free space: 541.12GB
+C:\Users\eligo\.jenkins\workspace\Run 1-4>SETLOCAL
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>FOR /F "usebackq tokens=1,2" %f IN (`PowerShell -NoProfile -EncodedCommand "CgBnAHcAbQBpACAAVwBpAG4AMwAyAF8ATABvAGcAaQBjAGEAbABEAGkAcwBrACAALQBGAGkAbAB0AGUAcgAgACIAQwBhAHAAdABpAG8AbgA9ACcAQwA6ACcAIgB8ACUAewAkAGcAPQAxADAANwAzADcANAAxADgAMgA0ADsAWwBpAG4AdABdACQAZgA9ACgAJABfAC4ARgByAGUAZQBTAHAAYQBjAGUALwAkAGcAKQA7AFsAaQBuAHQAXQAkAHQAPQAoACQAXwAuAFMAaQB6AGUALwAkAGcAKQA7AFcAcgBpAHQAZQAtAEgAbwBzAHQAIAAoACQAdAAtACQAZgApACwAJABmAH0ACgA="`) DO ((SET U=%f )  & (SET F=%g ) ) 
+#< CLIXML
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"><Obj S="progress" RefId="0"><TN RefId="0"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N="SourceId">1</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="progress" RefId="1"><TNRef RefId="0" /><MS><I64 N="SourceId">2</I64><PR N="Record"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S="information" RefId="2"><TN RefId="1"><T>System.Management.Automation.InformationRecord</T><T>System.Object</T></TN><ToString>394 541</ToString><Props><Obj N="MessageData" RefId="3"><TN RefId="2"><T>System.Management.Automation.HostInformationMessage</T><T>System.Object</T></TN><ToString>394 541</ToString><Props><S N="Message">394 541</S><B N="NoNewLine">false</B><S N="ForegroundColor">Gray</S><S N="BackgroundColor">Black</S></Props></Obj><S N="Source">Write-Host</S><DT N="TimeGenerated">2020-10-08T15:12:10.0821447+03:00</DT><Obj N="Tags" RefId="4"><TN RefId="3"><T>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</T><T>System.Object</T></TN><LST><S>PSHOST</S></LST></Obj><S N="User">LAPTOP_ASUS\eligo</S><S N="Computer">laptop_asus</S><U32 N="ProcessId">14472</U32><U32 N="NativeThreadId">16596</U32><U32 N="ManagedThreadId">15</U32></Props></Obj></Objs>
+C:\Users\eligo\.jenkins\workspace\Run 1-4>((SET U=394 )  & (SET F=541 ) ) 
+Free: 541
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Move File)
 [Pipeline] bat
 
-C:\Users\eligo\.jenkins\workspace\Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages>python c:\python\jenkins\class1\MoveFile.py 
+C:\Users\eligo\.jenkins\workspace\Run 1-4>SETLOCAL
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>FOR /F "usebackq" %f IN (`PowerShell -NoProfile -Command "Write-Host([Environment]::GetFolderPath('Desktop'))"`) DO (SET "DESKTOP_FOLDER=%f" ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>(SET "DESKTOP_FOLDER=C:\Users\eligo\Desktop" ) 
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>if exist C:\Users\eligo\Desktop\MyName.txt move C:\Users\eligo\Desktop\MyName.txt C:\Users\eligo\Desktop\1\MyName.txt  
+        1 file(s) moved.
+
+C:\Users\eligo\.jenkins\workspace\Run 1-4>ENDLOCAL  
 [Pipeline] }
 [Pipeline] // stage
 [Pipeline] }
