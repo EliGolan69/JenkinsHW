@@ -129,7 +129,7 @@ C:\Users\eligo\.jenkins\workspace\Build job that moves your text file into anoth
 Finished: SUCCESS
 
 =========================================================================
-4. Create a job that runs once a day at 8:00
+5. Create a job that runs once a day at 8:00
 =========================================================================
 
 --> Build Triggers
@@ -139,7 +139,7 @@ Would last have run at Wednesday, October 7, 2020 8:00:42 AM IDT; would next run
 --------------------
 
 =========================================================================
-5. Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
+6. Create a declarative Jenkins pipeline which will perform exercises 1-4 in 4 stages.
 =========================================================================
 
 
